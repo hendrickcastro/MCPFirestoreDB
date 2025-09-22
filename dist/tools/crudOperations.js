@@ -1,4 +1,4 @@
-import { getFirestoreClient, getCollection, getDocument } from '../db';
+import { getFirestoreClient, getCollection, getDocument } from '../db.js';
 import { Timestamp } from '@google-cloud/firestore';
 // Helper function to convert Firestore document to DocumentInfo
 const convertToDocumentInfo = (doc) => {

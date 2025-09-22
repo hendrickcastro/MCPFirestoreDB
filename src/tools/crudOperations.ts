@@ -1,4 +1,4 @@
-import { getFirestoreClient, getCollection, getDocument } from '../db';
+import { getFirestoreClient, getCollection, getDocument } from '../db.js';
 import { 
   ToolResult, 
   DocumentInfo, 
