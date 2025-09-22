@@ -3,7 +3,7 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 export const MCP_FIRESTORE_TOOLS: Tool[] = [
   // CRUD Operations
   {
-    name: 'mcp_firestoredb_mcp_create_document',
+    name: 'create_doc',
     description: 'Create a new document in a Firestore collection',
     inputSchema: {
       type: 'object',
@@ -25,7 +25,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_get_document',
+    name: 'get_doc',
     description: 'Get a specific document by ID from a Firestore collection',
     inputSchema: {
       type: 'object',
@@ -43,7 +43,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_get_documents',
+    name: 'get_docs',
     description: 'Get multiple documents from a Firestore collection with optional filtering and pagination',
     inputSchema: {
       type: 'object',
@@ -85,7 +85,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_update_document',
+    name: 'update_doc',
     description: 'Update an existing document in a Firestore collection',
     inputSchema: {
       type: 'object',
@@ -112,7 +112,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_delete_document',
+    name: 'delete_doc',
     description: 'Delete a document from a Firestore collection',
     inputSchema: {
       type: 'object',
@@ -131,7 +131,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
   },
   // Batch Operations
   {
-    name: 'mcp_firestoredb_mcp_batch_create_documents',
+    name: 'batch_create',
     description: 'Create multiple documents in a single batch operation',
     inputSchema: {
       type: 'object',
@@ -154,7 +154,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_batch_update_documents',
+    name: 'batch_update',
     description: 'Update multiple documents in a single batch operation',
     inputSchema: {
       type: 'object',
@@ -178,7 +178,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_batch_delete_documents',
+    name: 'batch_delete',
     description: 'Delete multiple documents in a single batch operation',
     inputSchema: {
       type: 'object',
@@ -201,7 +201,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
   },
   // Collection Operations
   {
-    name: 'mcp_firestoredb_mcp_list_collections',
+    name: 'list_collections',
     description: 'List all collections in the Firestore database',
     inputSchema: {
       type: 'object',
@@ -214,7 +214,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_get_collection_stats',
+    name: 'collection_stats',
     description: 'Get statistics about a Firestore collection',
     inputSchema: {
       type: 'object',
@@ -233,7 +233,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_analyze_collection_schema',
+    name: 'analyze_schema',
     description: 'Analyze the schema of documents in a Firestore collection',
     inputSchema: {
       type: 'object',
@@ -252,7 +252,7 @@ export const MCP_FIRESTORE_TOOLS: Tool[] = [
     }
   },
   {
-    name: 'mcp_firestoredb_mcp_delete_collection',
+    name: 'delete_collection',
     description: 'Delete an entire collection and all its documents (use with caution)',
     inputSchema: {
       type: 'object',

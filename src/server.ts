@@ -16,18 +16,18 @@ import { writeFileSync, existsSync, mkdirSync } from 'fs';
 import { MCP_FIRESTORE_TOOLS } from './tools.js';
 import { connectFirestore, closeConnection } from './db.js';
 import {
-  mcp_create_document,
-  mcp_get_document,
-  mcp_get_documents,
-  mcp_update_document,
-  mcp_delete_document,
-  mcp_batch_create_documents,
-  mcp_batch_update_documents,
-  mcp_batch_delete_documents,
-  mcp_list_collections,
-  mcp_get_collection_stats,
-  mcp_analyze_collection_schema,
-  mcp_delete_collection
+  create_doc,
+  get_doc,
+  get_docs,
+  update_doc,
+  delete_doc,
+  batch_create,
+  batch_update,
+  batch_delete,
+  list_collections,
+  collection_stats,
+  analyze_schema,
+  delete_collection
 } from './tools/index.js';
 
 // Setup __dirname for ES modules
@@ -146,54 +146,54 @@ class FirestoreServer {
 
         switch (name) {
           // CRUD Operations
-          case 'mcp_firestoredb_mcp_create_document':
-            result = await mcp_create_document(args as any);
+          case 'create_doc':
+            result = await create_doc(args as any);
             break;
 
-          case 'mcp_firestoredb_mcp_get_document':
-            result = await mcp_get_document(args as any);
+          case 'get_doc':
+            result = await get_doc(args as any);
             break;
 
-          case 'mcp_firestoredb_mcp_get_documents':
-            result = await mcp_get_documents(args as any);
+          case 'get_docs':
+            result = await get_docs(args as any);
             break;
 
-          case 'mcp_firestoredb_mcp_update_document':
-            result = await mcp_update_document(args as any);
+          case 'update_doc':
+            result = await update_doc(args as any);
             break;
 
-          case 'mcp_firestoredb_mcp_delete_document':
-            result = await mcp_delete_document(args as any);
+          case 'delete_doc':
+            result = await delete_doc(args as any);
             break;
 
           // Batch Operations
-          case 'mcp_firestoredb_mcp_batch_create_documents':
-            result = await mcp_batch_create_documents(args as any);
+          case 'batch_create':
+            result = await batch_create(args as any);
             break;
 
-          case 'mcp_firestoredb_mcp_batch_update_documents':
-            result = await mcp_batch_update_documents(args as any);
+          case 'batch_update':
+            result = await batch_update(args as any);
             break;
 
-          case 'mcp_firestoredb_mcp_batch_delete_documents':
-            result = await mcp_batch_delete_documents(args as any);
+          case 'batch_delete':
+            result = await batch_delete(args as any);
             break;
 
           // Collection Operations
-          case 'mcp_firestoredb_mcp_list_collections':
-            result = await mcp_list_collections();
+          case 'list_collections':
+            result = await list_collections();
             break;
 
-          case 'mcp_firestoredb_mcp_get_collection_stats':
-            result = await mcp_get_collection_stats(args as any);
+          case 'collection_stats':
+            result = await collection_stats(args as any);
             break;
 
-          case 'mcp_firestoredb_mcp_analyze_collection_schema':
-            result = await mcp_analyze_collection_schema(args as any);
+          case 'analyze_schema':
+            result = await analyze_schema(args as any);
             break;
 
-          case 'mcp_firestoredb_mcp_delete_collection':
-            result = await mcp_delete_collection(args as any);
+          case 'delete_collection':
+            result = await delete_collection(args as any);
             break;
 
           default:
