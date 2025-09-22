@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp-firestoredb": {
+      "command": "node",
+      "args": ["path/to/MCPFirestoreDB/dist/server.js"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "path/to/your/service-account-key.json",
+        "FIREBASE_PROJECT_ID": "your-firebase-project-id",
+        "FIRESTORE_DATABASE_ID": "(default)"
+      }
+    }
+  }
+}

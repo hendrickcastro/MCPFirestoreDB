@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp-firestoredb": {
+      "command": "npx",
+      "args": ["-y", "hendrickcastro/MCPFirestoreDB"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "D:/_Keys/agtxia-rulaitem.json",
+        "FIREBASE_PROJECT_ID": "agtxia-rulaitem",
+        "FIRESTORE_DATABASE_ID": "(default)"
+      }
+    }
+  }
+}
