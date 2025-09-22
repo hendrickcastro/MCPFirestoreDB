@@ -18,6 +18,36 @@ A comprehensive **Model Context Protocol (MCP)** server for **Google Cloud Fires
 - Google Cloud Firestore database with service account credentials
 - MCP-compatible client (Claude Desktop, Cursor IDE, etc.)
 
+## 🎯 Tool Overview
+
+### Available Tools (12 Total)
+This MCP server provides **12 optimized tools** with short, intuitive names for efficient Firestore operations:
+
+**📝 Document Operations (5 tools):**
+- `create_doc` - Create new documents
+- `get_doc` - Retrieve specific documents
+- `get_docs` - Query multiple documents with filtering
+- `update_doc` - Update existing documents
+- `delete_doc` - Remove documents
+
+**🔄 Batch Operations (3 tools):**
+- `batch_create` - Create multiple documents at once
+- `batch_update` - Update multiple documents simultaneously
+- `batch_delete` - Delete multiple documents in batch
+
+**📊 Collection Management (4 tools):**
+- `list_collections` - List all available collections
+- `collection_stats` - Get detailed collection statistics
+- `analyze_schema` - Analyze document schemas and structure
+- `delete_collection` - Remove entire collections (with caution)
+
+### 🚀 Key Capabilities
+- **Real-time Operations**: Direct Firestore database access
+- **Advanced Querying**: Filtering, sorting, and pagination support
+- **Batch Processing**: High-performance bulk operations
+- **Schema Analysis**: Intelligent document structure analysis
+- **Production Ready**: Comprehensive error handling and validation
+
 ## ⚙️ Configuration
 
 ### Required Environment Variables
@@ -66,7 +96,7 @@ MCP FirestoreDB provides 12 comprehensive tools for Google Cloud Firestore opera
 
 ### CRUD Operations
 
-### 1. 📝 **Create Document** - `mcp_firestoredb_mcp_create_document`
+### 1. 📝 **Create Document** - `create_doc`
 Create a new document in a Firestore collection.
 
 **Parameters:**
@@ -74,14 +104,14 @@ Create a new document in a Firestore collection.
 - `document_id`: Optional document ID (auto-generated if not provided)
 - `data`: Document data object
 
-### 2. 📖 **Get Document** - `mcp_firestoredb_mcp_get_document`
+### 2. 📖 **Get Document** - `get_doc`
 Retrieve a specific document by ID from a collection.
 
 **Parameters:**
 - `collection_path`: Collection path
 - `document_id`: Document ID to retrieve
 
-### 3. 📚 **Get Documents** - `mcp_firestoredb_mcp_get_documents`
+### 3. 📚 **Get Documents** - `get_docs`
 Get multiple documents with optional filtering and pagination.
 
 **Parameters:**
@@ -92,7 +122,7 @@ Get multiple documents with optional filtering and pagination.
 - `where_conditions`: Array of where conditions [field, operator, value]
 - `start_after`: Document ID for pagination
 
-### 4. ✏️ **Update Document** - `mcp_firestoredb_mcp_update_document`
+### 4. ✏️ **Update Document** - `update_doc`
 Update an existing document in a collection.
 
 **Parameters:**
@@ -101,7 +131,7 @@ Update an existing document in a collection.
 - `data`: Data to update (partial update supported)
 - `merge`: Whether to merge with existing data (default: true)
 
-### 5. 🗑️ **Delete Document** - `mcp_firestoredb_mcp_delete_document`
+### 5. 🗑️ **Delete Document** - `delete_doc`
 Delete a document from a collection.
 
 **Parameters:**
@@ -110,38 +140,38 @@ Delete a document from a collection.
 
 ### Batch Operations
 
-### 6. 📝📝 **Batch Create Documents** - `mcp_firestoredb_mcp_batch_create_documents`
+### 6. 📝📝 **Batch Create Documents** - `batch_create`
 Create multiple documents in a single batch operation.
 
-### 7. ✏️✏️ **Batch Update Documents** - `mcp_firestoredb_mcp_batch_update_documents`
+### 7. ✏️✏️ **Batch Update Documents** - `batch_update`
 Update multiple documents in a single batch operation.
 
-### 8. 🗑️🗑️ **Batch Delete Documents** - `mcp_firestoredb_mcp_batch_delete_documents`
+### 8. 🗑️🗑️ **Batch Delete Documents** - `batch_delete`
 Delete multiple documents in a single batch operation.
 
 ### Collection Operations
 
-### 9. 📋 **List Collections** - `mcp_firestoredb_mcp_list_collections`
+### 9. 📋 **List Collections** - `list_collections`
 List all collections in the Firestore database.
 
 **Parameters:**
 - `parent_path`: Optional parent document path for subcollections
 
-### 10. 📊 **Get Collection Stats** - `mcp_firestoredb_mcp_get_collection_stats`
+### 10. 📊 **Get Collection Stats** - `collection_stats`
 Get statistics about a Firestore collection.
 
 **Parameters:**
 - `collection_path`: Collection path
 - `sample_size`: Number of documents to sample (default: 100)
 
-### 11. 🏗️ **Analyze Collection Schema** - `mcp_firestoredb_mcp_analyze_collection_schema`
+### 11. 🏗️ **Analyze Collection Schema** - `analyze_schema`
 Analyze the schema of documents in a collection.
 
 **Parameters:**
 - `collection_path`: Collection path
 - `sample_size`: Number of documents to sample (default: 100)
 
-### 12. 🗑️📁 **Delete Collection** - `mcp_firestoredb_mcp_delete_collection`
+### 12. 🗑️📁 **Delete Collection** - `delete_collection`
 Delete an entire collection and all its documents (use with caution).
 
 **Parameters:**
@@ -153,7 +183,7 @@ Delete an entire collection and all its documents (use with caution).
 ### Document Operations
 ```typescript
 // Create a document
-const newDoc = await mcp_create_document({
+const newDoc = await create_doc({
   collection_path: "users",
   document_id: "user-123",
   data: {
@@ -164,13 +194,13 @@ const newDoc = await mcp_create_document({
 });
 
 // Get a specific document
-const document = await mcp_get_document({
+const document = await get_doc({
   collection_path: "users",
   document_id: "user-123"
 });
 
 // Update a document
-const updated = await mcp_update_document({
+const updated = await update_doc({
   collection_path: "users",
   document_id: "user-123",
   data: { lastLogin: new Date() },
@@ -181,7 +211,7 @@ const updated = await mcp_update_document({
 ### Querying Data
 ```typescript
 // Get documents with filtering
-const activeUsers = await mcp_get_documents({
+const activeUsers = await get_docs({
   collection_path: "users",
   where_conditions: [
     ["status", "==", "active"],
@@ -193,7 +223,7 @@ const activeUsers = await mcp_get_documents({
 });
 
 // Get documents with pagination
-const nextPage = await mcp_get_documents({
+const nextPage = await get_docs({
   collection_path: "users",
   limit: 10,
   start_after: "last-document-id"
@@ -203,7 +233,7 @@ const nextPage = await mcp_get_documents({
 ### Batch Operations
 ```typescript
 // Batch create multiple documents
-const batchCreate = await mcp_batch_create_documents({
+const batchCreate = await batch_create({
   operations: [
     {
       collection_path: "products",
@@ -222,16 +252,16 @@ const batchCreate = await mcp_batch_create_documents({
 ### Collection Analysis
 ```typescript
 // List all collections
-const collections = await mcp_list_collections();
+const collections = await list_collections();
 
 // Get collection statistics
-const stats = await mcp_get_collection_stats({
+const stats = await collection_stats({
   collection_path: "users",
   sample_size: 1000
 });
 
 // Analyze collection schema
-const schema = await mcp_analyze_collection_schema({
+const schema = await analyze_schema({
   collection_path: "products",
   sample_size: 500
 });
@@ -346,13 +376,16 @@ src/
 ```
 
 **Key Features:**
-- ⚡ Efficient connection management
-- 🛡️ Comprehensive error handling
-- 📊 Collection statistics and schema analysis
-- 🔧 Environment-based configuration
-- 🚀 Batch operations for performance
-- 📋 Intelligent schema analysis
-- 🔍 Advanced querying capabilities
+- ⚡ Efficient connection management with optimized performance
+- 🛡️ Comprehensive error handling and validation
+- 📊 Advanced collection statistics and schema analysis
+- 🔧 Flexible environment-based configuration
+- 🚀 High-performance batch operations
+- 📋 Intelligent schema analysis with detailed insights
+- 🔍 Advanced querying capabilities with filtering and pagination
+- 🎯 Shortened tool names for improved usability
+- 🔄 Real-time database operations
+- 📈 Production-ready with extensive testing
 
 ## 📝 Important Notes
 
