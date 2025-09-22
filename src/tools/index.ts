@@ -20,3 +20,12 @@ export {
   mcp_analyze_collection_schema as analyze_schema,
   mcp_delete_collection as delete_collection
 } from './collectionOperations.js';
+
+// Index Operations
+export {
+  mcp_create_index as create_index,
+  mcp_list_indexes as list_indexes,
+  mcp_get_index_status as get_index_status,
+  mcp_parse_index_error as parse_index_error,
+  mcp_generate_indexes_config as generate_indexes_config
+} from './indexOperations.js';

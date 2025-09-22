@@ -8,7 +8,7 @@ import { writeFileSync, existsSync, mkdirSync } from 'fs';
 // Import tools and database connection
 import { MCP_FIRESTORE_TOOLS } from './tools.js';
 import { connectFirestore, closeConnection } from './db.js';
-import { create_doc, get_doc, get_docs, update_doc, delete_doc, batch_create, batch_update, batch_delete, list_collections, collection_stats, analyze_schema, delete_collection } from './tools/index.js';
+import { create_doc, get_doc, get_docs, update_doc, delete_doc, batch_create, batch_update, batch_delete, list_collections, collection_stats, analyze_schema, delete_collection, create_index, list_indexes, get_index_status, parse_index_error, generate_indexes_config } from './tools/index.js';
 // Setup __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -140,6 +140,22 @@ class FirestoreServer {
                         break;
                     case 'delete_collection':
                         result = await delete_collection(args);
+                        break;
+                    // Index Operations
+                    case 'create_index':
+                        result = await create_index(args);
+                        break;
+                    case 'list_indexes':
+                        result = await list_indexes(args);
+                        break;
+                    case 'get_index_status':
+                        result = await get_index_status(args);
+                        break;
+                    case 'parse_index_error':
+                        result = await parse_index_error(args);
+                        break;
+                    case 'generate_indexes_config':
+                        result = await generate_indexes_config(args);
                         break;
                     default:
                         throw new McpError(ErrorCode.MethodNotFound, `Unknown tool: ${name}`);

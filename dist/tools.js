@@ -267,5 +267,143 @@ export const MCP_FIRESTORE_TOOLS = [
             },
             required: ['collection_path']
         }
+    },
+    {
+        name: 'create_index',
+        description: 'Generate configuration for creating a composite index for Firestore queries',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                collection_path: {
+                    type: 'string',
+                    description: 'The path to the collection for the index'
+                },
+                fields: {
+                    type: 'array',
+                    description: 'Array of fields to include in the index',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            fieldPath: {
+                                type: 'string',
+                                description: 'The field path to index'
+                            },
+                            order: {
+                                type: 'string',
+                                enum: ['ASCENDING', 'DESCENDING'],
+                                description: 'Sort order for the field',
+                                default: 'ASCENDING'
+                            },
+                            arrayConfig: {
+                                type: 'string',
+                                enum: ['CONTAINS'],
+                                description: 'Array configuration for array fields'
+                            }
+                        },
+                        required: ['fieldPath']
+                    }
+                },
+                query_scope: {
+                    type: 'string',
+                    enum: ['COLLECTION', 'COLLECTION_GROUP'],
+                    description: 'Scope of the index query',
+                    default: 'COLLECTION'
+                }
+            },
+            required: ['collection_path', 'fields']
+        }
+    },
+    {
+        name: 'list_indexes',
+        description: 'Get guidance on how to list existing Firestore indexes',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                collection_path: {
+                    type: 'string',
+                    description: 'Optional collection path to filter indexes'
+                }
+            }
+        }
+    },
+    {
+        name: 'get_index_status',
+        description: 'Get guidance on checking the status of a specific Firestore index',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                index_name: {
+                    type: 'string',
+                    description: 'The name of the index to check'
+                }
+            },
+            required: ['index_name']
+        }
+    },
+    {
+        name: 'parse_index_error',
+        description: 'Parse Firestore query error messages to extract index creation information',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                error_message: {
+                    type: 'string',
+                    description: 'The Firestore error message containing index requirements'
+                }
+            },
+            required: ['error_message']
+        }
+    },
+    {
+        name: 'generate_indexes_config',
+        description: 'Generate firestore.indexes.json configuration for Firebase CLI deployment',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                indexes: {
+                    type: 'array',
+                    description: 'Array of index configurations',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            collection_path: {
+                                type: 'string',
+                                description: 'The collection path for the index'
+                            },
+                            fields: {
+                                type: 'array',
+                                description: 'Array of fields for the index',
+                                items: {
+                                    type: 'object',
+                                    properties: {
+                                        fieldPath: {
+                                            type: 'string',
+                                            description: 'The field path'
+                                        },
+                                        order: {
+                                            type: 'string',
+                                            enum: ['ASCENDING', 'DESCENDING'],
+                                            default: 'ASCENDING'
+                                        },
+                                        arrayConfig: {
+                                            type: 'string',
+                                            enum: ['CONTAINS']
+                                        }
+                                    },
+                                    required: ['fieldPath']
+                                }
+                            },
+                            query_scope: {
+                                type: 'string',
+                                enum: ['COLLECTION', 'COLLECTION_GROUP'],
+                                default: 'COLLECTION'
+                            }
+                        },
+                        required: ['collection_path', 'fields']
+                    }
+                }
+            },
+            required: ['indexes']
+        }
     }
 ];

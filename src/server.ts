@@ -27,7 +27,12 @@ import {
   list_collections,
   collection_stats,
   analyze_schema,
-  delete_collection
+  delete_collection,
+  create_index,
+  list_indexes,
+  get_index_status,
+  parse_index_error,
+  generate_indexes_config
 } from './tools/index.js';
 
 // Setup __dirname for ES modules
@@ -194,6 +199,27 @@ class FirestoreServer {
 
           case 'delete_collection':
             result = await delete_collection(args as any);
+            break;
+
+          // Index Operations
+          case 'create_index':
+            result = await create_index(args as any);
+            break;
+
+          case 'list_indexes':
+            result = await list_indexes(args as any);
+            break;
+
+          case 'get_index_status':
+            result = await get_index_status(args as any);
+            break;
+
+          case 'parse_index_error':
+            result = await parse_index_error(args as any);
+            break;
+
+          case 'generate_indexes_config':
+            result = await generate_indexes_config(args as any);
             break;
 
           default:

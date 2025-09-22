@@ -20,8 +20,8 @@ A comprehensive **Model Context Protocol (MCP)** server for **Google Cloud Fires
 
 ## 🎯 Tool Overview
 
-### Available Tools (12 Total)
-This MCP server provides **12 optimized tools** with short, intuitive names for efficient Firestore operations:
+### Available Tools (17 Total)
+This MCP server provides **17 optimized tools** with short, intuitive names for efficient Firestore operations:
 
 **📝 Document Operations (5 tools):**
 - `create_doc` - Create new documents
@@ -40,6 +40,13 @@ This MCP server provides **12 optimized tools** with short, intuitive names for 
 - `collection_stats` - Get detailed collection statistics
 - `analyze_schema` - Analyze document schemas and structure
 - `delete_collection` - Remove entire collections (with caution)
+
+**🔍 Index Management (5 tools):**
+- `create_index` - Generate composite index configurations
+- `list_indexes` - Get guidance on listing existing indexes
+- `get_index_status` - Check index building status and information
+- `parse_index_error` - Parse Firestore error messages for index creation
+- `generate_indexes_config` - Generate firestore.indexes.json for deployment
 
 ### 🚀 Key Capabilities
 - **Real-time Operations**: Direct Firestore database access
@@ -351,6 +358,45 @@ const schema = await analyze_schema({
 3. Set FIRESTORE_EMULATOR_HOST environment variable
 4. Use demo project ID for testing
 
+## 🔍 Index Management Operations
+
+Firestore index management tools help you handle composite indexes efficiently:
+
+### Creating Index Configurations
+```javascript
+// Generate index configuration for complex queries
+{
+  "collection_path": "users",
+  "fields": [
+    {"field": "status", "order": "ASCENDING"},
+    {"field": "created_at", "order": "DESCENDING"}
+  ]
+}
+```
+
+### Index Error Parsing
+```javascript
+// Parse Firestore error messages to extract index creation links
+{
+  "error_message": "The query requires an index. You can create it here: https://console.firebase.google.com/..."
+}
+```
+
+### Index Status Monitoring
+```javascript
+// Check index building progress
+{
+  "collection_path": "products",
+  "index_fields": ["category", "price"]
+}
+```
+
+**Important Notes:**
+- Index creation requires Firebase Console or CLI due to security restrictions
+- Tools provide configuration generation and guidance for manual creation
+- Monitor index building status to ensure query performance
+- Use `firestore.indexes.json` for deployment automation
+
 ## 🧪 Development
 
 ```bash
@@ -368,6 +414,7 @@ src/
 ├── tools/                      # Tool implementations
 │   ├── crudOperations.ts       # CRUD operations
 │   ├── collectionOperations.ts # Collection management
+│   ├── indexOperations.ts      # Index management operations
 │   ├── types.ts                # Type definitions
 │   └── index.ts                # Tool exports
 ├── db.ts                       # Firestore connection
