@@ -74,7 +74,29 @@ This MCP server provides **17 optimized tools** with short, intuitive names for 
 
 ### Installation Options
 
-#### Option 1: Local Development
+#### Option 1: NPX (Recommended)
+No installation needed! Configure your MCP client:
+
+```json
+{
+  "mcpServers": {
+    "mcp-firestoredb": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "hendrickcastro/MCPFirestoreDB"
+      ],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "D:/_Keys/my-firebase-project.json",
+        "FIREBASE_PROJECT_ID": "my-firebase-project",
+        "FIRESTORE_DATABASE_ID": "(default)"
+      }
+    }
+  }
+}
+```
+
+#### Option 2: Local Development
 ```bash
 git clone <your-repo-url>
 cd MCPFirestoreDB
