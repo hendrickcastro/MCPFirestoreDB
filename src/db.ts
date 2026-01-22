@@ -5,6 +5,11 @@ dotenv.config();
 
 let firestoreClient: Firestore | null = null;
 
+// Helper function to write to stderr (MCP compliant - keeps stdout clean for JSON-RPC)
+const log = (message: string): void => {
+  process.stderr.write(`${message}\n`);
+};
+
 // Helper function to parse boolean values
 const parseBoolean = (value: string | undefined, defaultValue: boolean = false): boolean => {
   if (!value) return defaultValue;
@@ -36,7 +41,7 @@ const buildConfig = (): Settings => {
   if (emulatorHost) {
     config.host = emulatorHost;
     config.ssl = false;
-    console.log(`🔧 Using Firestore emulator at ${emulatorHost}`);
+    log(`Using Firestore emulator at ${emulatorHost}`);
   }
 
   return config;
@@ -46,7 +51,7 @@ const buildConfig = (): Settings => {
 export const connectFirestore = async (): Promise<void> => {
   try {
     if (firestoreClient) {
-      console.log('✅ Firestore client already connected');
+      log('Firestore client already connected');
       return;
     }
 
@@ -56,12 +61,12 @@ export const connectFirestore = async (): Promise<void> => {
     // Test the connection by attempting to list collections
     await firestoreClient.listCollections();
     
-    console.log(`✅ Connected to Firestore successfully`);
-    console.log(`📊 Project ID: ${config.projectId}`);
-    console.log(`🗄️  Database ID: ${config.databaseId}`);
+    log(`Connected to Firestore successfully`);
+    log(`Project ID: ${config.projectId}`);
+    log(`Database ID: ${config.databaseId}`);
     
   } catch (error: any) {
-    console.error('❌ Failed to connect to Firestore:', error.message);
+    log(`Failed to connect to Firestore: ${error.message}`);
     throw new Error(`Firestore connection failed: ${error.message}`);
   }
 };
@@ -92,22 +97,22 @@ export const closeConnection = async (): Promise<void> => {
     if (firestoreClient) {
       await firestoreClient.terminate();
       firestoreClient = null;
-      console.log('🔌 Firestore connection closed');
+      log('Firestore connection closed');
     }
   } catch (error: any) {
-    console.error('❌ Error closing Firestore connection:', error.message);
+    log(`Error closing Firestore connection: ${error.message}`);
   }
 };
 
 // Graceful shutdown handlers
 process.on('SIGINT', async () => {
-  console.log('\n🛑 Received SIGINT, closing Firestore connection...');
+  log('Received SIGINT, closing Firestore connection...');
   await closeConnection();
   process.exit(0);
 });
 
 process.on('SIGTERM', async () => {
-  console.log('\n🛑 Received SIGTERM, closing Firestore connection...');
+  log('Received SIGTERM, closing Firestore connection...');
   await closeConnection();
   process.exit(0);
 });
