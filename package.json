@@ -1,6 +1,6 @@
 {
   "name": "mcpfirestoredb",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "MCP FirestoreDB - Google Firestore MCP Server for database operations and CRUD functionality",
   "type": "module",
   "main": "dist/server.js",

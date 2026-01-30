@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2026-01-30
+
+### Documentation
+- Updated README.md with npm package as the primary recommended installation method
+- Highlighted benefits of using npm package (no installation, automatic updates, bug fixes)
+- Updated all configuration examples to use mcpfirestoredb@1.1.2
+- Updated cursor_mcp_config.example.json with npm installation
+- Updated claude_desktop_config.example.json with npm installation
+- Improved documentation structure for better clarity
+
 ## [1.1.1] - 2026-01-30
 
 ### Fixed

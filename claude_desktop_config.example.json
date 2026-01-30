@@ -2,7 +2,7 @@
   "mcpServers": {
     "firestoredb": {
       "command": "npx",
-      "args": ["-y", "mcpfirestoredb@1.1.1"],
+      "args": ["-y", "mcpfirestoredb@1.1.2"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
         "FIREBASE_PROJECT_ID": "your-firebase-project",

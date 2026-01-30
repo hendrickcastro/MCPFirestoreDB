@@ -84,7 +84,7 @@ This MCP server provides **17 optimized tools** with short, intuitive names for 
   "mcpServers": {
     "firestoredb": {
       "command": "npx",
-      "args": ["-y", "mcpfirestoredb@1.1.1"],
+      "args": ["-y", "mcpfirestoredb@1.1.2"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
         "FIREBASE_PROJECT_ID": "my-firebase-project",
@@ -329,7 +329,7 @@ const schema = await analyze_schema({
   "mcpServers": {
     "firestoredb": {
       "command": "npx",
-      "args": ["-y", "mcpfirestoredb@1.1.1"],
+      "args": ["-y", "mcpfirestoredb@1.1.2"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/production-service-account.json",
         "FIREBASE_PROJECT_ID": "my-production-project",
@@ -346,7 +346,7 @@ const schema = await analyze_schema({
   "mcpServers": {
     "firestoredb": {
       "command": "npx",
-      "args": ["-y", "mcpfirestoredb@1.1.1"],
+      "args": ["-y", "mcpfirestoredb@1.1.2"],
       "env": {
         "FIREBASE_PROJECT_ID": "demo-project",
         "FIRESTORE_EMULATOR_HOST": "localhost:8080",
@@ -363,7 +363,7 @@ const schema = await analyze_schema({
   "mcpServers": {
     "firestoredb-main": {
       "command": "npx",
-      "args": ["-y", "mcpfirestoredb@1.1.1"],
+      "args": ["-y", "mcpfirestoredb@1.1.2"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
         "FIREBASE_PROJECT_ID": "my-project",
@@ -372,7 +372,7 @@ const schema = await analyze_schema({
     },
     "firestoredb-analytics": {
       "command": "npx",
-      "args": ["-y", "mcpfirestoredb@1.1.1"],
+      "args": ["-y", "mcpfirestoredb@1.1.2"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
         "FIREBASE_PROJECT_ID": "my-project",
