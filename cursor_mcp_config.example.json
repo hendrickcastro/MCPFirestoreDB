@@ -1,13 +1,14 @@
 {
   "mcpServers": {
-    "mcp-firestoredb": {
-      "command": "node",
-      "args": ["path/to/MCPFirestoreDB/dist/server.js"],
+    "firestoredb": {
+      "command": "npx",
+      "args": ["-y", "mcpfirestoredb@1.1.1"],
       "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "path/to/your/service-account-key.json",
-        "FIREBASE_PROJECT_ID": "your-firebase-project-id",
+        "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
+        "FIREBASE_PROJECT_ID": "your-firebase-project",
         "FIRESTORE_DATABASE_ID": "(default)"
-      }
+      },
+      "description": "Google Cloud Firestore MCP Server - Recommended npm installation"
     }
   }
 }

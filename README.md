@@ -76,15 +76,15 @@ This MCP server provides **17 optimized tools** with short, intuitive names for 
 
 ### Installation Options
 
-#### Option 1: NPX from npm Registry (Recommended) ✅
-No installation needed! Configure your MCP client:
+#### ⭐ Option 1: NPM Package (Recommended)
+**The easiest and most reliable way!** No installation or build needed - just configure and use:
 
 ```json
 {
   "mcpServers": {
     "firestoredb": {
       "command": "npx",
-      "args": ["-y", "mcpfirestoredb@1.1.0"],
+      "args": ["-y", "mcpfirestoredb@1.1.1"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
         "FIREBASE_PROJECT_ID": "my-firebase-project",
@@ -95,7 +95,16 @@ No installation needed! Configure your MCP client:
 }
 ```
 
+**Benefits:**
+- ✅ Always uses the latest stable version
+- ✅ No local installation or compilation required
+- ✅ Automatic dependency management
+- ✅ Works immediately after configuration
+- ✅ Bug fixes included (v1.1.1 resolves `__dirname` error)
+
 #### Option 2: NPX from GitHub
+Use the development version directly from GitHub:
+
 ```json
 {
   "mcpServers": {
@@ -318,12 +327,13 @@ const schema = await analyze_schema({
 ```json
 {
   "mcpServers": {
-    "mcp-firestoredb": {
-      "command": "node",
-      "args": ["path/to/MCPFirestoreDB/dist/server.js"],
+    "firestoredb": {
+      "command": "npx",
+      "args": ["-y", "mcpfirestoredb@1.1.1"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/production-service-account.json",
-        "FIREBASE_PROJECT_ID": "my-production-project"
+        "FIREBASE_PROJECT_ID": "my-production-project",
+        "FIRESTORE_DATABASE_ID": "(default)"
       }
     }
   }
@@ -334,9 +344,9 @@ const schema = await analyze_schema({
 ```json
 {
   "mcpServers": {
-    "mcp-firestoredb": {
-      "command": "node",
-      "args": ["path/to/MCPFirestoreDB/dist/server.js"],
+    "firestoredb": {
+      "command": "npx",
+      "args": ["-y", "mcpfirestoredb@1.1.1"],
       "env": {
         "FIREBASE_PROJECT_ID": "demo-project",
         "FIRESTORE_EMULATOR_HOST": "localhost:8080",
@@ -351,18 +361,18 @@ const schema = await analyze_schema({
 ```json
 {
   "mcpServers": {
-    "mcp-firestoredb-main": {
-      "command": "node",
-      "args": ["path/to/MCPFirestoreDB/dist/server.js"],
+    "firestoredb-main": {
+      "command": "npx",
+      "args": ["-y", "mcpfirestoredb@1.1.1"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
         "FIREBASE_PROJECT_ID": "my-project",
         "FIRESTORE_DATABASE_ID": "(default)"
       }
     },
-    "mcp-firestoredb-analytics": {
-      "command": "node",
-      "args": ["path/to/MCPFirestoreDB/dist/server.js"],
+    "firestoredb-analytics": {
+      "command": "npx",
+      "args": ["-y", "mcpfirestoredb@1.1.1"],
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
         "FIREBASE_PROJECT_ID": "my-project",
