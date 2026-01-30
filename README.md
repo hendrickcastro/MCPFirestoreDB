@@ -1,6 +1,8 @@
 # MCP FirestoreDB - Google Cloud Firestore MCP Server
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/mcpfirestoredb.svg)](https://www.npmjs.com/package/mcpfirestoredb)
+[![Downloads](https://img.shields.io/npm/dm/mcpfirestoredb.svg)](https://www.npmjs.com/package/mcpfirestoredb)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)](https://www.typescriptlang.org/)
 [![Google Cloud Firestore](https://img.shields.io/badge/Google%20Cloud-Firestore-orange)](https://cloud.google.com/firestore)
@@ -74,20 +76,17 @@ This MCP server provides **17 optimized tools** with short, intuitive names for 
 
 ### Installation Options
 
-#### Option 1: NPX (Recommended)
+#### Option 1: NPX from npm Registry (Recommended) ✅
 No installation needed! Configure your MCP client:
 
 ```json
 {
   "mcpServers": {
-    "mcp-firestoredb": {
+    "firestoredb": {
       "command": "npx",
-      "args": [
-        "-y",
-        "hendrickcastro/MCPFirestoreDB"
-      ],
+      "args": ["-y", "mcpfirestoredb@1.1.0"],
       "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "D:/_Keys/my-firebase-project.json",
+        "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
         "FIREBASE_PROJECT_ID": "my-firebase-project",
         "FIRESTORE_DATABASE_ID": "(default)"
       }
@@ -96,7 +95,24 @@ No installation needed! Configure your MCP client:
 }
 ```
 
-#### Option 2: Local Development
+#### Option 2: NPX from GitHub
+```json
+{
+  "mcpServers": {
+    "firestoredb": {
+      "command": "npx",
+      "args": ["-y", "hendrickcastro/MCPFirestoreDB"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json",
+        "FIREBASE_PROJECT_ID": "my-firebase-project",
+        "FIRESTORE_DATABASE_ID": "(default)"
+      }
+    }
+  }
+}
+```
+
+#### Option 3: Local Development
 ```bash
 git clone <your-repo-url>
 cd MCPFirestoreDB

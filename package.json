@@ -1,6 +1,6 @@
 {
   "name": "mcpfirestoredb",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP FirestoreDB - Google Firestore MCP Server for database operations and CRUD functionality",
   "type": "module",
   "main": "dist/server.js",
@@ -22,7 +22,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "ts-node src/server.ts",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && esbuild src/server.ts --bundle --platform=node --format=esm --outfile=dist/server.js --external:fsevents --banner:js=\"import { createRequire } from 'module'; const require = createRequire(import.meta.url);\"",
     "prepublishOnly": "npm run build",
     "test": "npm run build && jest",
     "test:mock": "npm run build && jest src/__tests__/mcp-tools.test.ts",
@@ -75,6 +75,7 @@
     "@types/node": "^24.0.3",
     "chalk": "^4.1.2",
     "cli-table3": "^0.6.5",
+    "esbuild": "^0.25.12",
     "jest": "^30.0.2",
     "nodemon": "^3.1.10",
     "rimraf": "^6.0.1",
@@ -84,5 +85,9 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "bundleDependencies": [
+    "@modelcontextprotocol/sdk",
+    "@google-cloud/firestore"
+  ]
 }
